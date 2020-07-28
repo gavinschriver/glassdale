@@ -33,12 +33,10 @@ const render = convictionsCollection => {
 }
 
 export const ConvictionSelect = () => {
-    getConvictions().then(() => { //invokes the getconvictions function to grab data and convert it into usable JSON format
-
-    const convictions = useConvictions(); //invoking useConvictions() returns a copy of 
+    getConvictions().then(() => { 
+    const convictions = useConvictions(); 
 
     render(convictions)
-        // grab all convictions that have been imported into the application
     })
 }
 
