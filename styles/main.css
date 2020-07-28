@@ -1,0 +1,20 @@
+.criminal {
+}
+
+.criminal__name {
+    font-weight: bolder;
+    padding: 5px 0
+}
+
+.criminalsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.card {
+border: 2px solid black;
+padding: 10px;
+margin: 5px;
+flex-basis: 25%
+}
