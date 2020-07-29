@@ -49,6 +49,11 @@ eventHub.addEventListener("hideCriminalsPressed", hideCriminalsEvent => {
     contentTarget.innerHTML = ""
 })
 
+eventHub.addEventListener("showAllCriminalsPressed", showAllCriminalsEvent => {
+    const criminalsArray = useCriminals()
+    render(criminalsArray)  
+})
+
 
 const render = specificArrayOfCriminals => {
     let currentCriminalsAsHTML = ""
