@@ -7,6 +7,7 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
 
+
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
     console.log(convictionSelectEvent)
     const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
@@ -42,6 +43,10 @@ eventHub.addEventListener("officerChosen", officerSelectEvent => {
 
     render(matchingCriminals)
 
+})
+
+eventHub.addEventListener("hideCriminalsPressed", hideCriminalsEvent => {
+    contentTarget.innerHTML = ""
 })
 
 
