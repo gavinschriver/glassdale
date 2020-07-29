@@ -1,19 +1,22 @@
 import { CriminalList } from "./criminals/CriminalList.js";
 import { ConvictionSelect} from "./convictions/ConvictionSelect.js"
-
-//for logging purposes...
-import { getCriminals, useCriminals} from "./criminals/CriminalProvider.js";
-import { getConvictions, useConvictions} from "./convictions/ConvictionProvider.js";
-import { getOfficers, useOfficers } from "./officers/OfficerProvider.js";
 import { OfficerSelect } from "./officers/OfficerSelect.js";
+import { NoteForm } from "./notes/NoteForm.js";
 
 CriminalList()
 ConvictionSelect()
 OfficerSelect()
+NoteForm()
 
 
-//log out incoming data as logs:
 
+
+
+//kenny loggin', test purposes only
+
+import { getCriminals, useCriminals} from "./criminals/CriminalProvider.js";
+import { getConvictions, useConvictions} from "./convictions/ConvictionProvider.js";
+import { getOfficers, useOfficers } from "./officers/OfficerProvider.js";
 getCriminals().then(() => {
     let displayCriminals = useCriminals()
     console.log(displayCriminals)
