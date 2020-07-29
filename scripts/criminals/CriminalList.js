@@ -1,53 +1,79 @@
-import { getCriminals, useCriminals } from "./CriminalProvider.js";
+import { getCriminals, useCriminals } from "./CriminalProvider.js"; //in this Module, we need to GET the criminals AND use them 
 import { CriminalHTMLConverter } from "./CriminalHTMLRepresenter.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
+import { useOfficers } from "../officers/OfficerProvider.js";
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
+
+
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
-        
-    const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen //IDofTheCrimeThatWasChosen is the "integer" coming back from your targeted <option> element
+    console.log(convictionSelectEvent)
+    const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
 
-    const crimeArray = useConvictions() //produce the crime array from the convictions provider 
-    const matchingCrime = crimeArray.find(currentCrimeObj => { //look thru crimes array and return the first value who's ID matches the "integer" defined above, from the target 
-        return parseInt(crimeFromSelector) === currentCrimeObj.id   //THIS WHOLE THING = match "id" in TARGETED ELEMENT to value of id in criminal object, so essentially "looking up" the name of the selection crime by its ID
-    })                                                              //output of this is ONLY 1 VALUE, the first object that matches
+    const crimeArray = useConvictions() 
+    const matchingCrime = crimeArray.find(currentCrimeObj => { 
+        return parseInt(crimeFromSelector) === currentCrimeObj.id   
+    })                                                              
 
-    const criminalsArray = useCriminals() //produce criminal array 
+    const criminalsArray = useCriminals() 
 
-    const matchingCriminals = criminalsArray.filter(currentCriminalObj => { //look thru all objects in criminalsArray and, into a new array, pushes only those who's conviction property matches the crime name we looked up above
+    const matchingCriminals = criminalsArray.filter(currentCriminalObj => { 
         return matchingCrime.name === currentCriminalObj.conviction
     })
 
-    render(matchingCriminals) //pass the array of all the criminal objects in our new, "matched-to-a-single-crime-name-from-selector" array into a function that actually poops out HTML
+    render(matchingCriminals) 
 
+}) 
 
-}) //end listener callback 
+eventHub.addEventListener("officerChosen", officerSelectEvent => {
+    const officerFromSelector = officerSelectEvent.detail.officerId
+
+    const officersArray = useOfficers() //not necessary if we use the officer NAME prop from the objects as the value in the dropdown
+    const matchingOfficer = officersArray.find(officerObj => {
+        return parseInt(officerFromSelector) === officerObj.id      
+    })
+
+    const criminalsArray = useCriminals()
+
+    const matchingCriminals = criminalsArray.filter(criminalObj => {
+        return matchingOfficer.name === criminalObj.arrestingOfficer
+    })
+
+    render(matchingCriminals)
+
+})
+
+eventHub.addEventListener("hideCriminalsPressed", hideCriminalsEvent => {
+    contentTarget.innerHTML = ""
+})
+
+eventHub.addEventListener("showAllCriminalsPressed", showAllCriminalsEvent => {
+    const criminalsArray = useCriminals()
+    render(criminalsArray)  
+})
 
 
 const render = specificArrayOfCriminals => {
     let currentCriminalsAsHTML = ""
 
-    //add the result of your per-criminal-object-into-html converter to the  big ol hmtl string declared above for each obj in whichever specific array youre passing in (e.g. all the criminals, or just the sorted ones from above etc)
     specificArrayOfCriminals.forEach(criminalToBeRepresented => {                   
         currentCriminalsAsHTML += CriminalHTMLConverter(criminalToBeRepresented)
     })
 
-    //add the big old html list to the DOM 
     contentTarget.innerHTML = currentCriminalsAsHTML
 
 }
 
 
-//have to call use criminals AGAIN, SEPARATELY here becaus eof goddamn function scope christ; 
-//when called, this function will return the value of invoking getCriminals, to first pull the data, and then invoking the render function on your starting, big ol original array of criminals (like, all that shit above only happens ON AN EVENT) 
 export const CriminalList = () => {
     
     getCriminals()
-        .then( () => {
-            const criminalArray = useCriminals()
-            render(criminalArray)         
+    .then( () => {
+        const criminalArray = useCriminals()
+        render(criminalArray)         
     })
-
+    
+    
 }
