@@ -8,7 +8,7 @@ const contentTarget = document.querySelector(".criminalsContainer")
 
 
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
-
+    console.log(convictionSelectEvent)
     const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
 
     const crimeArray = useConvictions() 
@@ -29,7 +29,7 @@ eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
 eventHub.addEventListener("officerChosen", officerSelectEvent => {
     const officerFromSelector = officerSelectEvent.detail.officerId
 
-    const officersArray = useOfficers()
+    const officersArray = useOfficers() //not necessary if we use the officer NAME prop from the objects as the value in the dropdown
     const matchingOfficer = officersArray.find(officerObj => {
         return parseInt(officerFromSelector) === officerObj.id      
     })
