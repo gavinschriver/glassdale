@@ -10,13 +10,13 @@ eventHub.addEventListener("noteStateChanged", customEvent => {
 
 
 const render = notes => {
-    return `
-            <h2>Field Notes:</h2>
-            ${
-                notes.map(note => 
-                    Note(note)).join("")
-            }
-            `
+    const noteListArray = notes.map(noteObj => {
+        return Note(noteObj)
+    }).reverse().join("")
+
+    contentTarget.innerHTML = `<h2>Field Notes:</h2>
+                                ${noteListArray}
+                            `
 }
 
 
@@ -25,7 +25,7 @@ export const NoteList = () => {
     getNotes()
     .then( () => {
         const notesArray = useNotes()
-        contentTarget.innerHTML = render(notesArray) // in current setup w/ .map string being only thing returned, you gotta include this WHOLE line wherever you re-render your list based on an event; compare to render function in Criminal List,  
+        render(notesArray) // in current setup w/ .map string being only thing returned, you gotta include this WHOLE line wherever you re-render your list based on an event; compare to render function in Criminal List,  
         console.log(notesArray)        
     })
     

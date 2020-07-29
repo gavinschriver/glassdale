@@ -12,15 +12,29 @@ eventHub.addEventListener("click", clickEvent => {
         }
         
         saveNote(newNote)
-        console.log(newNote)
+    }
+})
+
+eventHub.addEventListener("keypress", keyPressEvent => {
+    if (keyPressEvent.charCode === 13) {
+        
+        const newNote = {
+            inputText: document.querySelector("#note-text").value,
+            date: document.querySelector("#note-date").value
+        }
+        
+        saveNote(newNote)
     }
 })
 
 const render = () => {
     contentTarget.innerHTML = `
-    <input type="text" id="note-text"></input>
+    <h1>Enter Note:</h1>
+    <fieldset class="noteEntryField">
+    <textarea id="note-text" placeholder="WASSAP"></textarea>
     <input type="date" id="note-date" value="2020-07-28">
     <button id="saveNote">Save Note</button>
+    </fieldset>
     `
 }
 

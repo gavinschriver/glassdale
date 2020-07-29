@@ -19,3 +19,23 @@ margin: 5px;
 flex-basis: 25%
 }
 
+.noteFormContainer {
+    border: 2px solid black;
+    padding: 5px;
+    margin: 5px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.filters {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+}
+
+.filter {
+    flex: 1
+}
