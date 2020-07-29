@@ -35,7 +35,7 @@ import { getNotes, useNotes } from "./notes/NoteProvider.js";
 //     console.log(displayOfficers)
 // })
 
-getNotes().then( () => { //this is only logging original app state; does not update after events
-    let displayNotes = useNotes()
-    console.log(displayNotes)
-})
+// getNotes().then( () => { //this is only logging original app state; does not update after events
+//     let displayNotes = useNotes()
+//     console.log(displayNotes)
+// })

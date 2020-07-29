@@ -1,12 +1,13 @@
 const eventHub = document.querySelector(".container")
 
+let notes = []
+
 const dispatchStateChangeEvent = () => {
     const noteStateChangedEvent = new CustomEvent ("noteStateChanged")
     eventHub.dispatchEvent(noteStateChangedEvent)
     
 }
 
-let notes = []
 
 export const useNotes = () => {
     return notes.slice()
