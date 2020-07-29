@@ -7,8 +7,14 @@ const dispatchStateChangeEvent = () => {
     
 }
 
+export const useNotes = () => {
+    return notes.slice()
+}
+
+let notes = []
+
 const getNotes = () => {
-    return fetch('http://localhost:8088/notes') //response is the name we're giving something automatically returned in "fetch" or "then" (?)
+    return fetch('http://localhost:8088/notes') 
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes

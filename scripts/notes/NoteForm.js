@@ -5,13 +5,14 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
-
+        
         const newNote = {
-            inputText: document.querySelector("#note-text").innerHTML,
+            inputText: document.querySelector("#note-text").value,
             date: document.querySelector("#note-date").value
         }
-
+        
         saveNote(newNote)
+        console.log(newNote)
     }
 })
 
