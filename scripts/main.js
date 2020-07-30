@@ -13,7 +13,7 @@ OfficerSelect()
 NoteForm()
 NoteList()
 hideCriminalsButton()
-// showAllCriminalsButton()
+showAllCriminalsButton()
 criminalListControls()
 
 
