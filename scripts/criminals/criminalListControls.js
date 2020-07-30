@@ -7,11 +7,14 @@ const contentTarget = document.querySelector(".siteHeader")
 
 
 export const criminalListControls = () => {
-     const allCriminalControls = 
+     let allCriminalControls = 
         showAllCriminalsButton() + 
         hideCriminalsButton() +
-        OfficerSelect().then(()=> {
+
+        OfficerSelect().then(officerDropDown => {
+           allCriminalControls += officerDropDown
+           contentTarget.innerHTML = allCriminalControls
+
         })
 
-     contentTarget.innerHTML = allCriminalControls
 }

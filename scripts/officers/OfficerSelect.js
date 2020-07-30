@@ -32,24 +32,16 @@ const render = officersCollection => {
     `
 }
 
+
 export const OfficerSelect = () => {
-        return getOfficers().then(() => {
+    return getOfficers().then(() => {
         
         const officers = useOfficers();
-
-        render(officers)
-
+        
+        return render(officers)
+        
     })
 }
-
-
-
-
-
-
-
-
-
 
 
 
