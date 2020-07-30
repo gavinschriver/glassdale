@@ -1,6 +1,9 @@
-import { ConvictionSelect } from "../convictions/ConvictionSelect.js";
-import { OfficerSelect } from "../officers/OfficerSelect.js";
-import { hideCriminalsButton } from "./hideCriminalListButton.js";
-import { showAllCriminalsButton } from "./showAllCriminalsButton.js";
+import {showAllCriminalsButton } from "./showAllCriminalsButton.js"
 
+const contentTarget = document.querySelector(".siteHeader")
 
+export const criminalListControls = () => {
+     const allCriminalControls = showAllCriminalsButton()
+
+     contentTarget.innerHTML = allCriminalControls
+}
