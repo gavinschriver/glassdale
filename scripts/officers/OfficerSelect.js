@@ -18,7 +18,7 @@ eventHub.addEventListener("change", eventObj => {
 })
 
 
-const render = officersCollection => {
+const selectBarHTML = officersCollection => {
     
     return `
     <select class="dropdown" id="officerSelect">
@@ -38,7 +38,7 @@ export const OfficerSelect = () => {
     return getOfficers()
         .then( () => {
             const officers = useOfficers();
-            return render(officers)
+            return selectBarHTML(officers)
         
     })
 }
@@ -67,7 +67,7 @@ export const OfficerSelect = () => {
 
 
 
-// const render = officersCollection => {
+// const selectBarHTML = officersCollection => {
     
 //     targetArea.innerHTML = `
 //     <select class="dropdown" id="officerSelect">
@@ -87,7 +87,7 @@ export const OfficerSelect = () => {
         
 //         const officers = useOfficers();
 
-//         render(officers)
+//         selectBarHTML(officers)
 
 //     })
 // }
