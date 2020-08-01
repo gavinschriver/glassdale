@@ -4,6 +4,21 @@ import { Note } from "./Note.js";
 const contentTarget = document.querySelector(".notesListContainer")
 const eventHub = document.querySelector(".container")
 
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.className === "note__editButton" ) {
+        const editNoteButtonEvent = new CustomEvent("editNoteButtonClicked",
+        { 
+            detail: {
+                id: clickEvent.target.id
+            }
+        })
+
+        eventHub.dispatchEvent(editNoteButtonEvent)
+        console.log(editNoteButtonEvent)
+    }
+})
+
+
 
 eventHub.addEventListener("noteStateChanged", () => {
     if (noteToggle === hideNoteList)
