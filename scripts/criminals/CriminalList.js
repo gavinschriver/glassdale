@@ -28,27 +28,28 @@ eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
 }) 
 
 eventHub.addEventListener("officerChosen", officerSelectEvent => {
+    
     const officerFromSelector = officerSelectEvent.detail.officerId
-
+    
     const officersArray = useOfficers() //not necessary if we use the officer NAME prop from the objects as the value in the dropdown
     const matchingOfficer = officersArray.find(officerObj => {
         return parseInt(officerFromSelector) === officerObj.id      
     })
-
+    
     const criminalsArray = useCriminals()
     const matchingCriminals = criminalsArray.filter(criminalObj => {
         return matchingOfficer.name === criminalObj.arrestingOfficer
     })
-
+    
     render(matchingCriminals)
 
 })
 
-eventHub.addEventListener("hideCriminalsPressed", hideCriminalsEvent => {
+eventHub.addEventListener("hideCriminalsPressed", () => {
     contentTarget.innerHTML = ""
 })
 
-eventHub.addEventListener("showAllCriminalsPressed", showAllCriminalsEvent => {
+eventHub.addEventListener("showAllCriminalsPressed", () => {
     const criminalsArray = useCriminals()
     render(criminalsArray)  
 })
@@ -81,7 +82,7 @@ export const CriminalList = () => {
     getCriminals()
     .then( () => {
         const criminalArray = useCriminals()
-        render(criminalArray)       
+        // render(criminalArray)       
     })
     
     
