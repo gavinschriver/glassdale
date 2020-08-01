@@ -6,8 +6,8 @@ const eventHub = document.querySelector(".container")
 
 
 eventHub.addEventListener("noteStateChanged", () => {
-    if (noteToggle === NoteList)
-    NoteList()
+    if (noteToggle === hideNoteList)
+    NoteList() 
 })
 
 
@@ -51,4 +51,4 @@ const hideNoteList = () => {
     contentTarget.innerHTML = ""
 }
 
-let noteToggle = hideNoteList
+let noteToggle = NoteList
