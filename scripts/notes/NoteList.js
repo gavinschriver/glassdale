@@ -35,7 +35,7 @@ const render = notes => {
 }
 
 
-const NoteList = () => {
+export const NoteList = () => {
     
     getNotes()
     .then( () => {

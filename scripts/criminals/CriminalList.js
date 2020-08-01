@@ -66,14 +66,12 @@ eventHub.addEventListener("showAllCriminalsPressed", showAllCriminalsEvent => {
 // }
 
 const render = specificArrayOfCriminals => {
-    const fullCriminalHTML = `
-        ${
+    const fullCriminalHTML = 
            specificArrayOfCriminals.map(criminalToBeRepresented => {
                return CriminalHTMLConverter(criminalToBeRepresented)
            }).join("") 
-        }
-    `
-    contentTarget.innerHTML = fullCriminalHTML
+
+    contentTarget.innerHTML = `${fullCriminalHTML}`
 
 }
 
