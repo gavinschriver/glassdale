@@ -9,9 +9,13 @@ const contentTarget = document.querySelector(".criminalListControls")
 export const criminalListControls = () => {
      let criminalButtons = showAllCriminalsButton() + hideCriminalsButton()
 
-      OfficerSelect().then(officerDropDown => {
+      OfficerSelect()
+          .then(officerDropDown => {
+
            criminalButtons += officerDropDown
-           contentTarget.innerHTML = 
+
+
+           contentTarget.innerHTML =  
             `<h2>Find Criminals:</h2>` +
             criminalButtons
 

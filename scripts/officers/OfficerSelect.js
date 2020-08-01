@@ -34,11 +34,10 @@ const render = officersCollection => {
 
 
 export const OfficerSelect = () => {
-    return getOfficers().then(() => {
-        
-        const officers = useOfficers();
-        
-        return render(officers)
+    return getOfficers()
+        .then( () => {
+            const officers = useOfficers();
+            return render(officers)
         
     })
 }

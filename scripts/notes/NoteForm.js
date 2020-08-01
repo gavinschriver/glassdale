@@ -10,7 +10,7 @@ eventHub.addEventListener("click", clickEvent => {
             inputText: document.querySelector("#note-text").value,
             date: document.querySelector("#note-date").value
         }
-        
+        console.log(newNote)
         saveNote(newNote)
     }
 })
