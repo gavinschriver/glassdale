@@ -17,6 +17,7 @@ eventHub.addEventListener("change", eventObj => {
     }
 })
 
+
 const convictionsBarHTML = convictionsCollection => {
 
     return `
