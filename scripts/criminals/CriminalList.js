@@ -36,7 +36,6 @@ eventHub.addEventListener("officerChosen", officerSelectEvent => {
     })
 
     const criminalsArray = useCriminals()
-
     const matchingCriminals = criminalsArray.filter(criminalObj => {
         return matchingOfficer.name === criminalObj.arrestingOfficer
     })
@@ -55,14 +54,26 @@ eventHub.addEventListener("showAllCriminalsPressed", showAllCriminalsEvent => {
 })
 
 
+// const render = specificArrayOfCriminals => {
+//     let currentCriminalsAsHTML = ""
+
+//     specificArrayOfCriminals.forEach(criminalToBeRepresented => {                   
+//         currentCriminalsAsHTML += CriminalHTMLConverter(criminalToBeRepresented)
+//     })
+
+//     contentTarget.innerHTML = currentCriminalsAsHTML
+
+// }
+
 const render = specificArrayOfCriminals => {
-    let currentCriminalsAsHTML = ""
-
-    specificArrayOfCriminals.forEach(criminalToBeRepresented => {                   
-        currentCriminalsAsHTML += CriminalHTMLConverter(criminalToBeRepresented)
-    })
-
-    contentTarget.innerHTML = currentCriminalsAsHTML
+    const fullCriminalHTML = `
+        ${
+           specificArrayOfCriminals.map(criminalToBeRepresented => {
+               return CriminalHTMLConverter(criminalToBeRepresented)
+           }).join("") 
+        }
+    `
+    contentTarget.innerHTML = fullCriminalHTML
 
 }
 

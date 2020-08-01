@@ -17,6 +17,7 @@ eventHub.addEventListener("change", eventObj => {
     }
 })
 
+
 const render = officersCollection => {
     
     return `
@@ -41,6 +42,7 @@ export const OfficerSelect = () => {
         
     })
 }
+
 
 
 

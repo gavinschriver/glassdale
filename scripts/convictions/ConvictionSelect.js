@@ -4,7 +4,7 @@ const eventHub = document.querySelector(".container")
 const targetArea = document.querySelector(".filters__crime")
 
 eventHub.addEventListener("change", eventObj => {
-    if (eventObj.target.id === "crimeSelect") { //if the element clicked on had the id crimeSelect (meaning, it was the dropdown)
+    if (eventObj.target.id === "crimeSelect") { 
 
         const convinctionCustomEvent = new CustomEvent("crimeWasChosen", {
             detail: {
