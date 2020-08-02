@@ -60,6 +60,15 @@ eventHub.addEventListener("alibiButtonClicked", customEvent => {
         return (criminalObj.id === parseInt(customEvent.detail.criminalObjId))
     })
     console.log(criminalMatch)
+    const alibiData = `
+                        ${
+                          criminalMatch.known_associates.map(associate => {
+                              return `Associate Name: ${associate.name}
+                                      Associate Alibi: ${associate.alibi}`
+                          }) 
+                        }
+                        `
+    console.log(alibiData)
 })
 
 

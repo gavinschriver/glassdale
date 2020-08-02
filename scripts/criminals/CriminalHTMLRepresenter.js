@@ -9,7 +9,6 @@ eventHub.addEventListener("click", clickEvent => {
             }
         })
         eventHub.dispatchEvent(alibiButtonEvent)
-        console.log(alibiButtonEvent)
     }
 })
 
