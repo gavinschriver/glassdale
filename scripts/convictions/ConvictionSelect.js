@@ -33,11 +33,13 @@ const convictionsBarHTML = convictionsCollection => {
         `
 }
 
+const returnConvictionsBar = () => { 
+    const convictions = useConvictions(); 
+    return convictionsBarHTML(convictions)
+}
+
 export const ConvictionSelect = () => {
     return getConvictions()
-        .then( () => { 
-            const convictions = useConvictions(); 
-            return convictionsBarHTML(convictions)
-    })
+        .then(returnConvictionsBar)
 }
 

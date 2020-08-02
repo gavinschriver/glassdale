@@ -3,14 +3,13 @@ eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id.startsWith("alibis--")) {
 
         const [prefix, clickedCriminalId] = clickEvent.target.id.split("--")
-
         const alibiButtonEvent = new CustomEvent("alibiButtonClicked", {
             detail: {
-                criminalObjId: clickedCriminalId,
+                criminalObjId: clickedCriminalId
             }
         })
         eventHub.dispatchEvent(alibiButtonEvent)
-        console.log(alibiButtonEvent.detail.criminalObjId)
+        console.log(alibiButtonEvent)
     }
 })
 

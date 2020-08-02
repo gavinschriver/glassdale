@@ -54,6 +54,14 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
     render(criminalsArray)  
 })
 
+eventHub.addEventListener("alibiButtonClicked", customEvent => {
+    const criminalsArray = useCriminals()
+    const criminalMatch = criminalsArray.find(criminalObj => {
+        return (criminalObj.id === customEvent.detail.clickedCriminalId)
+    })
+    console.log(criminalMatch)
+})
+
 
 // const render = specificArrayOfCriminals => {
 //     let currentCriminalsAsHTML = ""
