@@ -6,12 +6,11 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
-        
+        console.log(clickEvent.target.className)
         const newNote = {
             inputText: document.querySelector("#note-text").value,
             date: document.querySelector("#note-date").value
         }
-        console.log(newNote)
         saveNote(newNote)
     }
 })
@@ -34,7 +33,7 @@ const render = () => {
     <fieldset class="noteEntryField">
     <textarea id="note-text" placeholder="WASSAP"></textarea>
     <input type="date" id="note-date" value="2020-07-28">
-    <button id="saveNote">Save Note</button>
+    <button class="noteButton" id="saveNote">Save Note</button>
     ${noteToggleButton()}
     </fieldset>
     `
