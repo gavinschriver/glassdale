@@ -5,7 +5,8 @@ import { OfficerSelect } from "./officers/OfficerSelect.js";
 import { NoteForm } from "./notes/NoteForm.js";
 import { hideCriminalsButton } from "./criminals/hideCriminalListButton.js";
 import { showAllCriminalsButton } from "./criminals/showAllCriminalsButton.js";
-import { criminalListControls } from "./criminals/criminalListControls.js"
+import { criminalListControls } from "./criminals/criminalListControls.js";
+import "./criminals/AlibiList.js"
 
 CriminalList()
 ConvictionSelect()
