@@ -7,6 +7,7 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
 
+
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
     console.log(convictionSelectEvent)
     const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
@@ -54,8 +55,23 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
 })
 
 
- /// for WHOLE CRIM LIS //
- 
+eventHub.addEventListener("alibiButtonClicked", customEvent => {
+    const contentTarget = document.querySelector(`#alibi_list${parseInt(customEvent.detail.criminalId)}`)
+    const criminalsArray = useCriminals()
+    const criminalMatch = criminalsArray.find(criminalObj => {
+        return (criminalObj.id === parseInt(customEvent.detail.criminalId))
+    })
+    const alibiData = 
+                        `
+                        List of known associates for ${criminalMatch.name}:
+                        ${
+                          criminalMatch.known_associates.map(associate => {
+                              return `Associate Name: ${associate.name} Associate Alibi: ${associate.alibi}`
+                          }).join("\n")
+                        }`
+    const renderAlibis = () => contentTarget.innerHTML += alibiData
+    renderAlibis()
+    })
 
 const render = specificArrayOfCriminals => {
     const fullCriminalHTML = 
