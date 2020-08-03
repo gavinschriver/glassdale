@@ -5,18 +5,12 @@ const contentTarget = document.querySelector(".witnessContainer")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("showWitnessesClicked", () => {
-    witnessToggle()
-    if (witnessToggle === WitnessList) {
-        witnessToggle = hideWitnessList
-    } else if (witnessToggle === hideWitnessList) {
-        witnessToggle = WitnessList
-    }
-    // const allWitnessesArray = useWitnesses()
-    // render(allWitnessesArray)
+    const allWitnessesArray = useWitnesses()
+    render(allWitnessesArray)
 }) 
 
 const render = currentWitnessesArray => {
-    const witnessHTML = `<section id="currentWitnessList" class="hidden">
+    const witnessHTML = `<section>
                         ${
                             currentWitnessesArray.map(witnessObj => {
                                 return witness(witnessObj)
@@ -34,8 +28,8 @@ export const WitnessList = () => {
         })
 }
 
-const hideWitnessList = () => {
-    contentTarget.innerHTML = ""
-}
+// const hideWitnessList = () => {
+//     contentTarget.innerHTML = ""
+// }
 
-let witnessToggle = WitnessList
+// let witnessToggle = WitnessList
