@@ -63,7 +63,7 @@ const render = specificArrayOfCriminals => {
                return CriminalHTMLConverter(criminalToBeRepresented)
            }).join("") 
 
-    contentTarget.innerHTML = `${fullCriminalHTML}`
+    contentTarget.innerHTML += `${fullCriminalHTML}`
 
 }
 

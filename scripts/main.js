@@ -8,6 +8,7 @@ import { showAllCriminalsButton } from "./criminals/showAllCriminalsButton.js";
 import { criminalListControls } from "./criminals/criminalListControls.js";
 import "./criminals/AlibiList.js"
 import { WitnessList } from "./witnesses/witnessList.js";
+import { witnessButton} from "./witnesses/witnessesButton.js"
 
 CriminalList()
 ConvictionSelect()
@@ -17,6 +18,7 @@ hideCriminalsButton()
 showAllCriminalsButton()
 criminalListControls()
 WitnessList()
+witnessButton()
 
 // getWitnesses()
 //     .then ( () => {
