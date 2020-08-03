@@ -5,7 +5,6 @@ eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id === "hideCriminalButton") {
         const hideCriminalsButtonEvent = new CustomEvent("hideCriminalsPressed")
         eventHub.dispatchEvent(hideCriminalsButtonEvent)
-        console.log(hideCriminalsButtonEvent)
     }
 })
 

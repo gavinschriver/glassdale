@@ -72,9 +72,16 @@ export const CriminalList = () => {
     
     getCriminals()
     .then( () => {
-        const criminalArray = useCriminals()
+        const criminalArray = useCriminals()  
         render(criminalArray)       
     })
     
     
 }
+
+/* CriminalList in this scheme exports to main, so that its call to getCriminals executes when the page loads; that makes the useCriminals function in the provider available, which can
+then be imported here; then, an EL callback will grab that copy of ALL data, and produce whatever specific version of the array it needs (aka filter/search/whatever), before passing that
+newly specified array into render put generate actual page output and put it on the DOM
+
+SO TECHNICALLY, this probably would work if getCriminals just ran by itself in main?
+*/
