@@ -6,8 +6,8 @@ const eventHub = document.querySelector(".container")
 
 
 eventHub.addEventListener("alibiButtonClicked", alibiClickEvent => {
-    alibiContentTarget = document.querySelector(`#alibi_list${parseInt(alibiClickEvent.detail.criminalId)}`)
     const criminalClickID = alibiClickEvent.detail.criminalId 
+    alibiContentTarget = document.querySelector(`#alibi_list${parseInt(alibiClickEvent.detail.criminalId)}`)
     if (alibiContentTarget.className === "hidden") {
         AlibiList(criminalClickID)
         alibiContentTarget.className = "showing"
@@ -24,12 +24,12 @@ const renderAlibis = (criminalsArray, criminalClickID) => {
     })
     const alibiData = 
                         `
-                        List of known associates for ${criminalMatch.name}:
+                        <section class="known_associates">List of known associates for ${criminalMatch.name}:<br><br>
                         ${
                           criminalMatch.known_associates.map(associate => {
-                              return `Associate Name: ${associate.name} Associate Alibi: ${associate.alibi}`
+                              return `<div class="associate_info">Associate Name: ${associate.name} <br> Associate Alibi: ${associate.alibi}</div>`
                           }).join("")
-                        }`
+                        }<section>`
     alibiContentTarget.innerHTML = alibiData
 }
 
