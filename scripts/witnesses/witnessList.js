@@ -1,7 +1,7 @@
 import { getWitnesses, useWitnesses} from "./witnessProvider.js"
 import { witness } from "./witnessHTML.js"
 
-const contentTarget = document.querySelector(".witnessContainer")
+const contentTarget = document.querySelector("#contentList")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("showWitnessesButtonClicked", () => {

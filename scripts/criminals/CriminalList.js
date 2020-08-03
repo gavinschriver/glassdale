@@ -4,7 +4,7 @@ import { useConvictions } from "../convictions/ConvictionProvider.js";
 import { useOfficers } from "../officers/OfficerProvider.js";
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".criminalsContainer")
+const contentTarget = document.querySelector("#contentList")
 
 
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
