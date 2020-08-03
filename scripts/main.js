@@ -19,6 +19,7 @@ NoteForm()
 hideCriminalsButton()
 showAllCriminalsButton()
 criminalListControls()
+WitnessList()
 witnessListControls()
 witnessButton()
 

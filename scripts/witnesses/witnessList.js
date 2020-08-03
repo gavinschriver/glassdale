@@ -4,10 +4,10 @@ import { witness } from "./witnessHTML.js"
 const contentTarget = document.querySelector(".witnessContainer")
 const eventHub = document.querySelector(".container")
 
-eventHub.addEventListener("showWitnessesClicked", () => {
+eventHub.addEventListener("showWitnessesButtonClicked", () => {
     const allWitnessesArray = useWitnesses()
     render(allWitnessesArray)
-}) 
+})
 
 const render = currentWitnessesArray => {
     const witnessHTML = `<section>
@@ -23,8 +23,8 @@ const render = currentWitnessesArray => {
 export const WitnessList = () => {
     getWitnesses()
         .then( () => {
-            const allWitnessesArray = useWitnesses()
-            render(allWitnessesArray)
+            // const allWitnessesArray = useWitnesses()
+            // render(allWitnessesArray)
         })
 }
 

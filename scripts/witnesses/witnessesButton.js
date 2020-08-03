@@ -2,10 +2,10 @@ const contentTarget = document.querySelector(".witnessListControlls")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "showWitnessesButton") {
-        const witnessButtonEvent = new CustomEvent("showWitnessesClicked")
-        eventHub.dispatchEvent(witnessButtonEvent)
-        console.log(witnessButtonEvent)
+    if(clickEvent.target.id === "showWitnessesButton") {
+        const showWitnessesEvent = new CustomEvent("showWitnessesButtonClicked")
+        eventHub.dispatchEvent(showWitnessesEvent)
+        console.log(showWitnessesEvent)
     }
 })
 
