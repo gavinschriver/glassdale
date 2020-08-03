@@ -45,7 +45,9 @@ eventHub.addEventListener("officerChosen", officerSelectEvent => {
 })
 
 eventHub.addEventListener("hideCriminalsPressed", () => {
+    if(!document.body.contains(document.getElementById("currentWitnessList")) ) {
     contentTarget.innerHTML = ""
+    } 
 })
 
 eventHub.addEventListener("showAllCriminalsPressed", () => {
@@ -63,7 +65,7 @@ const render = specificArrayOfCriminals => {
                return CriminalHTMLConverter(criminalToBeRepresented)
            }).join("") 
 
-    contentTarget.innerHTML += `${fullCriminalHTML}`
+    contentTarget.innerHTML = `${fullCriminalHTML}`
 
 }
 
