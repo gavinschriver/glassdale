@@ -7,6 +7,7 @@ import { hideCriminalsButton } from "./criminals/hideCriminalListButton.js";
 import { showAllCriminalsButton } from "./criminals/showAllCriminalsButton.js";
 import { criminalListControls } from "./criminals/criminalListControls.js";
 import "./criminals/AlibiList.js"
+import { WitnessList } from "./witnesses/witnessList.js";
 
 CriminalList()
 ConvictionSelect()
@@ -15,7 +16,13 @@ NoteForm()
 hideCriminalsButton()
 showAllCriminalsButton()
 criminalListControls()
+WitnessList()
 
-
-
-
+// getWitnesses()
+//     .then ( () => {
+//        useWitnesses()
+//     })
+//     .then ( () => {
+//         console.log(witness(useWitnesses()[0]))
+//         }
+//     )

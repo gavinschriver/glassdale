@@ -19,7 +19,6 @@ eventHub.addEventListener("click", clickEvent => {
 })
 
 
-
 eventHub.addEventListener("noteStateChanged", () => {
     if (noteToggle === hideNoteList)
     NoteList() 

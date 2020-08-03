@@ -41,4 +41,3 @@ const render = () => {
 export const NoteForm = () => {
     render()
 }
-
