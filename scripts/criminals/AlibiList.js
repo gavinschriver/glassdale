@@ -29,7 +29,7 @@ const renderAlibis = (criminalsArray, criminalClickID) => {
                               return `Associate Name: ${associate.name} Associate Alibi: ${associate.alibi}`
                           }).join("")
                         }`
-    alibiContentTarget.innerHTML += alibiData
+    alibiContentTarget.innerHTML = alibiData
 }
 
 export const AlibiList = criminalClickID => {
