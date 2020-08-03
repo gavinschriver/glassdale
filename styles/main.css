@@ -39,3 +39,12 @@ flex-basis: 25%
 .filter {
     flex: 1
 }
+
+.known_associates {
+    background-color: #efefef;
+    margin: 5px 0
+}
+
+.associate_info {
+    
+}

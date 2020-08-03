@@ -17,9 +17,10 @@ eventHub.addEventListener("change", eventObj => {
     }
 })
 
-const render = officersCollection => {
+
+const selectBarHTML = officersCollection => {
     
-    targetArea.innerHTML = `
+    return `
     <select class="dropdown" id="officerSelect">
         <option value="0">Please choose an officer</option>
         ${
@@ -32,12 +33,61 @@ const render = officersCollection => {
     `
 }
 
+
 export const OfficerSelect = () => {
-    getOfficers().then(() => {
+    return getOfficers()
+        .then( () => {
+            const officers = useOfficers();
+            return selectBarHTML(officers)
         
-        const officers = useOfficers();
-
-        render(officers)
-
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const selectBarHTML = officersCollection => {
+    
+//     targetArea.innerHTML = `
+//     <select class="dropdown" id="officerSelect">
+//         <option value="0">Please choose an officer</option>
+//         ${
+//             officersCollection.map(
+//                 officerObj => {
+//                 return `<option value="${officerObj.id}">${officerObj.name}</option>` 
+//             }).join("")
+//         }
+//         </select>
+//     `
+// }
+
+// export const OfficerSelect = () => {
+//     getOfficers().then(() => {
+        
+//         const officers = useOfficers();
+
+//         selectBarHTML(officers)
+
+//     })
+// }

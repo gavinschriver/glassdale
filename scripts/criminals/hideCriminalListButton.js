@@ -10,5 +10,5 @@ eventHub.addEventListener("click", clickEvent => {
 })
 
 export const hideCriminalsButton = () => {
-    contentTarget.innerHTML = `<button id="hideCriminalButton">Hide All</button>`
+    return `<button id="hideCriminalButton">Hide All</button>`
 }

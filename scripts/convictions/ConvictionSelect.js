@@ -4,7 +4,7 @@ const eventHub = document.querySelector(".container")
 const targetArea = document.querySelector(".filters__crime")
 
 eventHub.addEventListener("change", eventObj => {
-    if (eventObj.target.id === "crimeSelect") { //if the element clicked on had the id crimeSelect (meaning, it was the dropdown)
+    if (eventObj.target.id === "crimeSelect") { 
 
         const convinctionCustomEvent = new CustomEvent("crimeWasChosen", {
             detail: {
@@ -17,9 +17,10 @@ eventHub.addEventListener("change", eventObj => {
     }
 })
 
-const render = convictionsCollection => {
 
-    targetArea.innerHTML = `
+const convictionsBarHTML = convictionsCollection => {
+
+    return `
         <select class="dropdown" id="crimeSelect">
             <option value="0">Please select a crime...</option> 
             ${
@@ -32,11 +33,13 @@ const render = convictionsCollection => {
         `
 }
 
-export const ConvictionSelect = () => {
-    getConvictions().then(() => { 
+const returnConvictionsBar = () => { 
     const convictions = useConvictions(); 
+    return convictionsBarHTML(convictions)
+}
 
-    render(convictions)
-    })
+export const ConvictionSelect = () => {
+    return getConvictions()
+        .then(returnConvictionsBar)
 }
 
