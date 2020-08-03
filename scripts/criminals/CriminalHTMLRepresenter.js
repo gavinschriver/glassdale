@@ -21,7 +21,7 @@ export const CriminalHTMLConverter = (criminalObj) => {
         <div class="criminal__termStart">Term Start:${new Date(criminalObj.incarceration.start).toLocaleString('en-US')}</div>
         <div class="criminal__termEnd">Term End:${new Date(criminalObj.incarceration.end).toLocaleString('en-US')}</div>
         <button id="alibis--${criminalObj.id}">Show/ Hide Alibis</button>
-        <div id="alibi_list${criminalObj.id}"></div>
+        <div id="alibi_list${criminalObj.id}" class="hidden"></div>
     </section>
     `
 }

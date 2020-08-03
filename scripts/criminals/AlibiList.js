@@ -7,13 +7,14 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("alibiButtonClicked", alibiClickEvent => {
     alibiContentTarget = document.querySelector(`#alibi_list${parseInt(alibiClickEvent.detail.criminalId)}`)
-    const criminalClickID = alibiClickEvent.detail.criminalId // so here, criminalClickID will be a string w/ number in it
-    alibiButtonToggle(criminalClickID)
-    if (alibiButtonToggle === AlibiList) {
-        alibiButtonToggle = hideAlibis
-    } else if (alibiButtonToggle === hideAlibis) {
-        alibiButtonToggle = AlibiList
-    }
+    const criminalClickID = alibiClickEvent.detail.criminalId 
+    if (alibiContentTarget.className === "hidden") {
+        AlibiList(criminalClickID)
+        alibiContentTarget.className = "showing"
+       } else if (alibiContentTarget.className === "showing") {
+           hideAlibis()
+           alibiContentTarget.className = "hidden"
+       }
 })
 
 const renderAlibis = (criminalsArray, criminalClickID) => {
@@ -41,7 +42,6 @@ const hideAlibis = () => {
     alibiContentTarget.innerHTML = ""
 }
 
-let alibiButtonToggle = AlibiList
 
 
 
