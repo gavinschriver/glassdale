@@ -48,12 +48,18 @@ eventHub.addEventListener("officerChosen", officerSelectEvent => {
 })
 
 eventHub.addEventListener("hideCriminalsPressed", () => {
+    if (contentTarget.className != "witnessesDisplayed") {
     contentTarget.innerHTML = ""
+    contentTarget.className = "noCriminalsDisplayed"
+    }
 })
 
 eventHub.addEventListener("showAllCriminalsPressed", () => {
+    if (contentTarget.className != "allCriminalsDisplayed") {
     const criminalsArray = useCriminals()
     render(criminalsArray)  
+    contentTarget.className = "allCriminalsDisplayed"
+    }
 })
 
 

@@ -9,7 +9,7 @@ eventHub.addEventListener("click", clickEvent => {
 })
 
 export const witnessButton = () => {
-    const buttonHTML = `<button id="showWitnessesButton"> Show Witnesses</button>` 
+    const buttonHTML = `<button id="showWitnessesButton"> Show/Hide Witnesses</button>` 
     contentTarget.innerHTML += buttonHTML
 }
 
