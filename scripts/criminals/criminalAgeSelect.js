@@ -9,7 +9,7 @@ export const criminalAgeSelect = () => {
     <input type="radio" id="ageGroup2" value="25-50" name="response">
     <label for="ageGroup2">Ages: 25-50</label>
 
-    <input type="radio" id="ageGroup3" value="50+" name="response">
+    <input type="radio" id="ageGroup3" value="50-1000" name="response"> 
     <label for="ageGroup3">Ages: 50+</label>
   </div>`
 }

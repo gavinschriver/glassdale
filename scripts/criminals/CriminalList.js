@@ -7,8 +7,15 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector("#contentList")
 
 
-eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
-    console.log(ageRangeEvent.detail.ageRange);
+eventHub.addEventListener("ageRangeSelected", ageRangeEvent => {
+    const [ageRangeMin, ageRangeMax] = ageRangeEvent.detail.ageRange.split("-")
+    const criminalsArray = useCriminals()
+    const matchingCriminalsArray = criminalsArray.filter(criminalObj => {
+        return (criminalObj.age > ageRangeMin && criminalObj.age < ageRangeMax)
+    })
+
+    render(matchingCriminalsArray)
+
   });
   
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
