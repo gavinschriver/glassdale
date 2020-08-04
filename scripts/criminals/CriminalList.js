@@ -8,7 +8,6 @@ const contentTarget = document.querySelector("#contentList")
 
 
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
-    console.log(convictionSelectEvent)
     const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
 
     const crimeArray = useConvictions() 
