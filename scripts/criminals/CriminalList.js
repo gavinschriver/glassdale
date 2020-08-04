@@ -7,6 +7,10 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector("#contentList")
 
 
+eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
+    console.log(ageRangeEvent.detail.ageRange);
+  });
+  
 eventHub.addEventListener("crimeWasChosen", convictionSelectEvent => {
     const crimeFromSelector = convictionSelectEvent.detail.IDofTheCrimeThatWasChosen 
 

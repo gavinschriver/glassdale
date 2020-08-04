@@ -13,3 +13,18 @@ export const criminalAgeSelect = () => {
     <label for="ageGroup3">Ages: 50+</label>
   </div>`
 }
+
+eventHub.addEventListener("change", (changeEvent) => {
+    if (changeEvent.target.id.startsWith("age")) {
+      const selectedAgeRange = changeEvent.target.value;
+  
+      const ageRangeSelectEvent = new CustomEvent("ageRangeSelected", {
+        detail: {
+          ageRange: selectedAgeRange
+        }
+      });
+  
+      eventHub.dispatchEvent(ageRangeSelectEvent);
+      // alert(selectedAgeRange);
+    }
+  });
