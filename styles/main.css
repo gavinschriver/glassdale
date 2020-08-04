@@ -6,7 +6,7 @@
     padding: 5px 0
 }
 
-.criminalsContainer {
+#contentList{
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
