@@ -1,8 +1,10 @@
 import { saveNote } from "./NoteProvider.js"
 import { noteToggleButton} from "./NoteListToggle.js"
+import { useNotes, getNotes } from "./NoteProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
+
 
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
@@ -28,6 +30,12 @@ eventHub.addEventListener("keypress", keyPressEvent => {
 
 eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     document.querySelector("#noteEditForm").showModal()
+    const selectedNoteId = parseInt(editNoteEvent.detail.id)
+    const currentNotes = useNotes()
+    const matchingNote = currentNotes.find(noteObj => {
+        return (noteObj.id === selectedNoteId)
+    })
+    console.log(matchingNote)
 })
 
 const render = () => {
@@ -43,8 +51,8 @@ const render = () => {
     <dialog id="noteEditForm">
     <form method="dialog">
       <div>Check it out</div>
-        <button id="WUT">BUHBYNOOOEEE</button>
-        <button id="closeMe">BUHBYEEE</button>
+        <textarea id="note-text" placeholder="WASSAP"></textarea>
+        <button id="closeMe">Save Updated Note</button>
     </form>
     </dialog>
     `
