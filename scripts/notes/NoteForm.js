@@ -29,13 +29,24 @@ eventHub.addEventListener("keypress", keyPressEvent => {
 })
 
 eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
-    document.querySelector("#noteEditForm").showModal()
     const selectedNoteId = parseInt(editNoteEvent.detail.id)
     const currentNotes = useNotes()
     const matchingNote = currentNotes.find(noteObj => {
         return (noteObj.id === selectedNoteId)
     })
-    console.log(matchingNote)
+    
+    contentTarget.innerHTML += 
+    `<dialog id="noteEditForm">
+    <form method="dialog">
+    <div>Check it out</div>
+    <textarea id="note-text" placeholder="${matchingNote.inputText}""></textarea>
+    <button id="closeMe">Save Updated Note</button>
+    </form>
+    </dialog>`
+
+    document.querySelector("#noteEditForm").showModal()
+
+    console.log(matchingNote.inputText)
 })
 
 const render = () => {
@@ -47,14 +58,6 @@ const render = () => {
     <button class="noteButton" id="saveNote">Save Note</button>
     ${noteToggleButton()}
     </fieldset>
-
-    <dialog id="noteEditForm">
-    <form method="dialog">
-      <div>Check it out</div>
-        <textarea id="note-text" placeholder="WASSAP"></textarea>
-        <button id="closeMe">Save Updated Note</button>
-    </form>
-    </dialog>
     `
 }
 
