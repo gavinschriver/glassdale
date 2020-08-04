@@ -13,6 +13,9 @@ eventHub.addEventListener("click", clickEvent => {
             date: document.querySelector("#note-date").value
         }
         saveNote(newNote)
+
+    } else if (clickEvent.target.id === "updateNoteButton") {
+        console.log(document.querySelector("#updated-note-text").value)
     }
 })
 
@@ -39,8 +42,8 @@ eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     `<dialog id="noteEditForm">
     <form method="dialog">
     <div>Check it out</div>
-    <textarea id="note-text" placeholder="${matchingNote.inputText}""></textarea>
-    <button id="closeMe">Save Updated Note</button>
+    <textarea id="updated-note-text" placeholder="${matchingNote.inputText}""></textarea>
+    <button id="updateNoteButton">Save Updated Note</button>
     </form>
     </dialog>`
 
