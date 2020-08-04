@@ -15,7 +15,11 @@ eventHub.addEventListener("click", clickEvent => {
         saveNote(newNote)
 
     } else if (clickEvent.target.id === "updateNoteButton") {
-        console.log(document.querySelector("#updated-note-text").value)
+        const updatedNote = {
+            id: document.querySelector(".updatedNoteId").id,
+            inputText: document.querySelector("#updated-note-text").value
+        }
+        console.log(updatedNote)
     }
 })
 
@@ -40,16 +44,18 @@ eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     
     contentTarget.innerHTML += 
     `<dialog id="noteEditForm">
-    <form method="dialog">
-    <div>Check it out</div>
-    <textarea id="updated-note-text" placeholder="${matchingNote.inputText}""></textarea>
+    <form method="dialog" id="">
+    <div class="updated-note-prompt" id="">Check it out</div>
+    <textarea id="updated-note-text" placeholder="${matchingNote.inputText}"></textarea>
     <button id="updateNoteButton">Save Updated Note</button>
+    <div class="updatedNoteId" id="${matchingNote.id}"></div>
     </form>
     </dialog>`
 
     document.querySelector("#noteEditForm").showModal()
 
     console.log(matchingNote.inputText)
+    console.log(matchingNote.id)
 })
 
 const render = () => {
