@@ -1,6 +1,4 @@
 import { useCriminals } from "./CriminalProvider.js"
-
-
 let alibiContentTarget 
 const eventHub = document.querySelector(".container")
 
@@ -22,6 +20,7 @@ const renderAlibis = (criminalsArray, criminalClickID) => {
     const criminalMatch = criminalsArray.find(criminalObj => {
         return (criminalObj.id === parseInt(criminalClickID))
     })
+    
     const alibiData = 
                         `
                         <section class="known_associates">List of known associates for ${criminalMatch.name}:<br><br>

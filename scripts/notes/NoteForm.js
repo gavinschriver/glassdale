@@ -26,6 +26,10 @@ eventHub.addEventListener("keypress", keyPressEvent => {
     }
 })
 
+eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
+    document.querySelector("#noteEditForm").showModal()
+})
+
 const render = () => {
     contentTarget.innerHTML = `
     <h1>Enter Note:</h1>
@@ -35,6 +39,14 @@ const render = () => {
     <button class="noteButton" id="saveNote">Save Note</button>
     ${noteToggleButton()}
     </fieldset>
+
+    <dialog id="noteEditForm">
+    <form method="dialog">
+      <div>Check it out</div>
+        <button id="WUT">BUHBYNOOOEEE</button>
+        <button id="closeMe">BUHBYEEE</button>
+    </form>
+    </dialog>
     `
 }
 
