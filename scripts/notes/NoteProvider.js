@@ -1,5 +1,12 @@
 const eventHub = document.querySelector(".container")
 
+eventHub.addEventListener("deleteNoteButtonClicked", deleteNoteEvent => {
+    const [prefix, idString] = deleteNoteEvent.detail.deleteId.split("--")
+    const parsedDeleteNoteId = parseInt(idString)
+    deleteNote(parsedDeleteNoteId)
+})
+
+
 let notes = []
 
 const dispatchStateChangeEvent = () => {
@@ -7,7 +14,6 @@ const dispatchStateChangeEvent = () => {
     eventHub.dispatchEvent(noteStateChangedEvent)
     
 }
-
 
 export const useNotes = () => {
     return notes.slice()
@@ -48,4 +54,8 @@ export const saveUpdatedNote = updatedNote => {
     })
     .then(getNotes)
     .then(dispatchStateChangeEvent)
+}
+
+const deleteNote = IDofNoteToDelete => {
+    console.log(IDofNoteToDelete)
 }

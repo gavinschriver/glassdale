@@ -22,6 +22,10 @@ eventHub.addEventListener("click", clickEvent => {
                 deleteId: clickEvent.target.id
             }
         })
+
+        eventHub.dispatchEvent(deleteNoteButtonEvent)
+        console.log(deleteNoteButtonEvent)
+
     }
 })
 
