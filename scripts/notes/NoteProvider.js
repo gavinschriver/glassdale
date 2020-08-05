@@ -57,5 +57,12 @@ export const saveUpdatedNote = updatedNote => {
 }
 
 const deleteNote = IDofNoteToDelete => {
-    console.log(IDofNoteToDelete)
+    return fetch(`http://localhost:8088/notes/${IDofNoteToDelete}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(getNotes)
+    .then(dispatchStateChangeEvent)
 }
