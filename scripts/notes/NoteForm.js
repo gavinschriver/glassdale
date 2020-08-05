@@ -17,22 +17,11 @@ eventHub.addEventListener("click", clickEvent => {
     } else if (clickEvent.target.id === "updateNoteButton") {
         const updatedNote = {
             id: document.querySelector(".updatedNoteId").id,
-            inputText: document.querySelector("#updated-note-text").value
-        }
-        console.log(updatedNote)
-        saveUpdatedNote(updatedNote)
-    }
-})
-
-eventHub.addEventListener("keypress", keyPressEvent => {
-    if (keyPressEvent.charCode === 13) {
-        
-        const newNote = {
-            inputText: document.querySelector("#note-text").value,
+            inputText: document.querySelector("#updated-note-text").value,
             date: document.querySelector("#note-date").value
         }
         
-        saveNote(newNote)
+        saveUpdatedNote(updatedNote)
     }
 })
 
@@ -52,11 +41,9 @@ eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     <div class="updatedNoteId" id="${matchingNote.id}"></div>
     </form>
     </dialog>`
-
+    
     document.querySelector("#noteEditForm").showModal()
 
-    console.log(matchingNote.inputText)
-    console.log(matchingNote.id)
 })
 
 const render = () => {
@@ -66,6 +53,7 @@ const render = () => {
     <textarea id="note-text" placeholder="WASSAP"></textarea>
     <input type="date" id="note-date" value="2020-07-28">
     <button class="noteButton" id="saveNote">Save Note</button>
+    <button class="deleteNoteButton" id="deleteNote">Delete Note</button>
     ${noteToggleButton()}
     </fieldset>
     `
@@ -74,3 +62,16 @@ const render = () => {
 export const NoteForm = () => {
     render()
 }
+
+
+// eventHub.addEventListener("keypress", keyPressEvent => {
+//     if (keyPressEvent.charCode === 13) {
+        
+//         const newNote = {
+//             inputText: document.querySelector("#note-text").value,
+//             date: document.querySelector("#note-date").value
+//         }
+        
+//         saveNote(newNote)
+//     }
+// })
