@@ -1,4 +1,4 @@
-import { saveNote } from "./NoteProvider.js"
+import { saveNote, saveUpdatedNote } from "./NoteProvider.js"
 import { noteToggleButton} from "./NoteListToggle.js"
 import { useNotes, getNotes } from "./NoteProvider.js"
 
@@ -20,6 +20,7 @@ eventHub.addEventListener("click", clickEvent => {
             inputText: document.querySelector("#updated-note-text").value
         }
         console.log(updatedNote)
+        saveUpdatedNote(updatedNote)
     }
 })
 

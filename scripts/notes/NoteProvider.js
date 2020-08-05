@@ -35,3 +35,17 @@ export const saveNote = note => {
     .then(dispatchStateChangeEvent)
 }
 
+///
+
+
+export const saveUpdatedNote = updatedNote => {
+    return fetch(`http://localhost:8088/notes/${parseInt(updatedNote.id)}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedNote)
+    })
+    .then(getNotes)
+    .then(dispatchStateChangeEvent)
+}
