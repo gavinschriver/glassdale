@@ -14,7 +14,14 @@ eventHub.addEventListener("click", clickEvent => {
         })
 
         eventHub.dispatchEvent(editNoteButtonEvent)
-        console.log(editNoteButtonEvent)
+
+    } else if (clickEvent.target.className === "note__deleteButton") {
+        const deleteNoteButtonEvent = new CustomEvent("deleteNoteButtonClicked",
+        {
+            detail: {
+                deleteId: clickEvent.target.id
+            }
+        })
     }
 })
 

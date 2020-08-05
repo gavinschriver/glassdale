@@ -25,6 +25,8 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
+
+
 eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     const selectedNoteId = parseInt(editNoteEvent.detail.id)
     const currentNotes = useNotes()
@@ -36,7 +38,7 @@ eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
     `<dialog id="noteEditForm">
     <form method="dialog" id="">
     <div class="updated-note-prompt" id="">Check it out</div>
-    <textarea id="updated-note-text" placeholder="${matchingNote.inputText}"></textarea>
+    <textarea id="updated-note-text" placeholder="">${matchingNote.inputText}</textarea>
     <button id="updateNoteButton">Save Updated Note</button>
     <div class="updatedNoteId" id="${matchingNote.id}"></div>
     </form>
@@ -53,7 +55,6 @@ const render = () => {
     <textarea id="note-text" placeholder="WASSAP"></textarea>
     <input type="date" id="note-date" value="2020-07-28">
     <button class="noteButton" id="saveNote">Save Note</button>
-    <button class="deleteNoteButton" id="deleteNote">Delete Note</button>
     ${noteToggleButton()}
     </fieldset>
     `
