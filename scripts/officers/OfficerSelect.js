@@ -43,6 +43,10 @@ export const OfficerSelect = () => {
     })
 }
 
+//the value of invoking officerSelect is the VALUE of 
+//everything after that RETURN statement HAPPENING; which is essentially a state of BEING (not like, a number or string)
+//the trutn value is an object that REPRESENTS something having happened or NOT
+
 
 
 

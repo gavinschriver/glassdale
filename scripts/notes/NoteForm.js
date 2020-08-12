@@ -1,6 +1,7 @@
 import { saveNote, saveUpdatedNote } from "./NoteProvider.js"
 import { noteToggleButton} from "./NoteListToggle.js"
 import { useNotes, getNotes } from "./NoteProvider.js"
+import { getCriminals, useCriminals } from "../criminals/CriminalProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
@@ -10,8 +11,10 @@ eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
         const newNote = {
             inputText: document.querySelector("#note-text").value,
-            date: document.querySelector("#note-date").value
+            date: document.querySelector("#note-date").value,
+            criminalId: document.querySelector("#note-criminal")
         }
+        console.log(newNote)
         saveNote(newNote)
 
     } else if (clickEvent.target.id === "updateNoteButton") {
@@ -20,7 +23,6 @@ eventHub.addEventListener("click", clickEvent => {
             inputText: document.querySelector("#updated-note-text").value,
             date: document.querySelector("#note-date").value
         }
-        
         saveUpdatedNote(updatedNote)
     }
 })
@@ -48,12 +50,22 @@ eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
 
 })
 
-const render = () => {
+
+
+const render = (criminalArray) => {
     contentTarget.innerHTML = `
     <h1>Enter Note:</h1>
     <fieldset class="noteEntryField">
     <textarea id="note-text" placeholder="WASSAP"></textarea>
-    <input type="date" id="note-date" value="2020-07-28">
+    <input type="date" id="note-date" value="2020-07-28" class="noteEntryField__criminal">
+    <select type="dropdown" id="note-criminal">
+        <option class="noteEntryField__criminal" value="0">Choose a baddy:</option>
+            ${
+                criminalArray.map(criminalObj => {
+                    return `<option value="${criminalObj.id}">${criminalObj.name}</option>`
+                }).join("")
+            }
+    </select>
     <button class="noteButton" id="saveNote">Save Note</button>
     ${noteToggleButton()}
     </fieldset>
@@ -61,7 +73,10 @@ const render = () => {
 }
 
 export const NoteForm = () => {
-    render()
+    getCriminals()
+        .then(() => {
+        const currentCriminalArray = useCriminals()
+        render(currentCriminalArray) })
 }
 
 

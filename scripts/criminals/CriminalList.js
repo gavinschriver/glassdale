@@ -87,7 +87,7 @@ const render = specificArrayOfCriminals => {
 export const CriminalList = () => {
     
     getCriminals()
-    .then( () => {
+    .then(() => {
         const criminalArray = useCriminals()
         render(criminalArray)       
     })
