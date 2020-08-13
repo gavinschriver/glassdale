@@ -1,6 +1,6 @@
 import { saveNote, saveUpdatedNote } from "./NoteProvider.js"
 import { noteToggleButton} from "./NoteListToggle.js"
-import { useNotes, getNotes } from "./NoteProvider.js"
+import { useNotes} from "./NoteProvider.js"
 import { getCriminals, useCriminals } from "../criminals/CriminalProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
@@ -12,7 +12,7 @@ eventHub.addEventListener("click", clickEvent => {
         const newNote = {
             inputText: document.querySelector("#note-text").value,
             date: document.querySelector("#note-date").value,
-            criminalId: document.querySelector("#note-criminal")
+            criminalId: parseInt(document.querySelector("#note-criminal").value)
         }
         console.log(newNote)
         saveNote(newNote)
@@ -21,7 +21,8 @@ eventHub.addEventListener("click", clickEvent => {
         const updatedNote = {
             id: document.querySelector(".updatedNoteId").id,
             inputText: document.querySelector("#updated-note-text").value,
-            date: document.querySelector("#note-date").value
+            date: document.querySelector("#note-date").value,
+            criminalId: parseInt(document.querySelector(".updated-note-criminal").id)
         }
         saveUpdatedNote(updatedNote)
     }
@@ -30,15 +31,15 @@ eventHub.addEventListener("click", clickEvent => {
 
 
 eventHub.addEventListener("editNoteButtonClicked", editNoteEvent => {
-    const selectedNoteId = parseInt(editNoteEvent.detail.id)
+    const selectedNoteObjId = parseInt(editNoteEvent.detail.DOMidOfNoteToEdit)
     const currentNotes = useNotes()
     const matchingNote = currentNotes.find(noteObj => {
-        return (noteObj.id === selectedNoteId)
+        return (noteObj.id === selectedNoteObjId)
     })
     
     contentTarget.innerHTML += 
     `<dialog id="noteEditForm">
-    <form method="dialog" id="">
+    <form method="dialog" class="updated-note-criminal" id="${matchingNote.criminalId}">
     <div class="updated-note-prompt" id="">Check it out</div>
     <textarea id="updated-note-text" placeholder="">${matchingNote.inputText}</textarea>
     <button id="updateNoteButton">Save Updated Note</button>
@@ -80,14 +81,3 @@ export const NoteForm = () => {
 }
 
 
-// eventHub.addEventListener("keypress", keyPressEvent => {
-//     if (keyPressEvent.charCode === 13) {
-        
-//         const newNote = {
-//             inputText: document.querySelector("#note-text").value,
-//             date: document.querySelector("#note-date").value
-//         }
-        
-//         saveNote(newNote)
-//     }
-// })

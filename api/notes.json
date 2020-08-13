@@ -1,9 +1,16 @@
 {
   "notes": [
     {
-      "inputText": "",
+      "id": 2,
+      "inputText": "noooo",
       "date": "2020-07-28",
-      "id": 1
+      "criminalId": 4
+    },
+    {
+      "id": 3,
+      "inputText": "BALEETED UNBALEETED",
+      "date": "2020-07-28",
+      "criminalId": 24
     }
   ]
 }

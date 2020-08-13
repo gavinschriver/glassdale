@@ -1,5 +1,6 @@
 import { useNotes, getNotes } from "./NoteProvider.js"
 import { Note } from "./Note.js";
+import { useCriminals, getCriminals } from "../criminals/CriminalProvider.js";
 
 const contentTarget = document.querySelector(".notesListContainer")
 const eventHub = document.querySelector(".container")
@@ -9,7 +10,7 @@ eventHub.addEventListener("click", clickEvent => {
         const editNoteButtonEvent = new CustomEvent("editNoteButtonClicked",
         { 
             detail: {
-                id: clickEvent.target.id
+                DOMidOfNoteToEdit: clickEvent.target.id
             }
         })
 
@@ -49,13 +50,15 @@ eventHub.addEventListener("noteListToggled", () => {
 
 
 
-const render = notes => {
-    const noteListArray = notes.map(noteObj => {
-        return Note(noteObj)
+const render = (notes, criminals) => {
+    const noteListCollection = notes.map(noteObj => {
+
+    const relatedCriminalObj = criminals.find(criminalObj => criminalObj.id === noteObj.criminalId)
+    return Note(noteObj,relatedCriminalObj)
     }).reverse().join("")
     
     contentTarget.innerHTML = `<h2>Field Notes:</h2>
-    ${noteListArray}
+    ${noteListCollection}
     `
 }
 
@@ -63,12 +66,12 @@ const render = notes => {
 export const NoteList = () => {
     
     getNotes()
-    .then( () => {
-        const notesArray = useNotes()
-        render(notesArray) 
-    })
-    
-    
+        .then(getCriminals)
+        .then( () => {
+            const notesArray = useNotes()
+            const criminalsArray = useCriminals()
+            render(notesArray, criminalsArray) 
+        })
 }
 
 
