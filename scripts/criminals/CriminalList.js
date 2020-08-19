@@ -72,9 +72,24 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
 
 /// for WHOLE CRIM LIS //
 
-const render = (specificArrayOfCriminals) => {
-  const fullCriminalHTML = specificArrayOfCriminals
+const render = (criminalsToRender, allFacilities, allRelationships) => {
+  const fullCriminalHTML = criminalsToRender
     .map((criminalToBeRepresented) => {
+      const facilityRelationshipsForCriminal = allRelationships.filter(
+        (cr) => criminalToBeRepresented.id === cr.criminalId
+      );
+
+      const matchingFacilities = facilityRelationshipsForCriminal.map(
+        (matchingRelationship) => {
+          const matchingFacility = allFacilities.find(
+            (facility) => facility.id === matchingRelationship.facilityId
+          );
+          return matchingFacility;
+        }
+      );
+
+      console.log(matchingFacilities);
+
       return CriminalHTMLConverter(criminalToBeRepresented);
     })
     .join("");
@@ -88,6 +103,9 @@ export const CriminalList = () => {
     .then(getCriminalFacilities)
     .then(() => {
       const criminalArray = useCriminals();
-      render(criminalArray);
+      const facilities = useFacilities();
+      const crimFac = useCriminalFacilities();
+      console.log(crimFac);
+      render(criminalArray, facilities, crimFac);
     });
 };
