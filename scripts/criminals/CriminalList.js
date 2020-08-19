@@ -11,6 +11,10 @@ import {
 const eventHub = document.querySelector(".container");
 const contentTarget = document.querySelector("#contentList");
 
+let criminalArray = [];
+let facilities = [];
+let crimFac = [];
+
 eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
   const [ageRangeMin, ageRangeMax] = ageRangeEvent.detail.ageRange.split("-");
   const criminalsArray = useCriminals();
@@ -74,16 +78,16 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
 
 /// for WHOLE CRIM LIS //
 
-const render = (criminalsToRender, allFacilities, allRelationships) => {
-  const fullCriminalHTML = criminalsToRender
+const render = () => {
+  const fullCriminalHTML = criminalArray
     .map((criminalToBeRepresented) => {
-      const facilityRelationshipsForCriminal = allRelationships.filter(
+      const facilityRelationshipsForCriminal = crimFac.filter(
         (cr) => criminalToBeRepresented.id === cr.criminalId
       );
 
       const matchingFacilities = facilityRelationshipsForCriminal.map(
         (matchingRelationship) => {
-          const matchingFacility = allFacilities.find(
+          const matchingFacility = facilities.find(
             (facility) => facility.id === matchingRelationship.facilityId
           );
           return matchingFacility;
@@ -102,9 +106,10 @@ export const CriminalList = () => {
     .then(getFacilities)
     .then(getCriminalFacilities)
     .then(() => {
-      const criminalArray = useCriminals();
-      const facilities = useFacilities();
-      const crimFac = useCriminalFacilities();
-      render(criminalArray, facilities, crimFac);
+      criminalArray = useCriminals();
+      facilities = useFacilities();
+      crimFac = useCriminalFacilities();
+
+      render();
     });
 };
