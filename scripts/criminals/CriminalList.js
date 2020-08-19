@@ -88,9 +88,7 @@ const render = (criminalsToRender, allFacilities, allRelationships) => {
         }
       );
 
-      console.log(matchingFacilities);
-
-      return CriminalHTMLConverter(criminalToBeRepresented);
+      return CriminalHTMLConverter(criminalToBeRepresented, matchingFacilities);
     })
     .join("");
 
