@@ -64,8 +64,10 @@ eventHub.addEventListener("hideCriminalsPressed", () => {
 
 eventHub.addEventListener("showAllCriminalsPressed", () => {
   if (contentTarget.className != "allCriminalsDisplayed") {
-    const criminalsArray = useCriminals();
-    render(criminalsArray);
+    const criminalArray = useCriminals();
+    const facilities = useFacilities();
+    const crimFac = useCriminalFacilities();
+    render(criminalArray, facilities, crimFac);
     contentTarget.className = "allCriminalsDisplayed";
   }
 });
@@ -103,7 +105,6 @@ export const CriminalList = () => {
       const criminalArray = useCriminals();
       const facilities = useFacilities();
       const crimFac = useCriminalFacilities();
-      console.log(crimFac);
       render(criminalArray, facilities, crimFac);
     });
 };
