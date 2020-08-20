@@ -21,7 +21,7 @@ eventHub.addEventListener("click", (clickEvent) => {
       id: document.querySelector(".updatedNoteId").id,
       inputText: document.querySelector("#updated-note-text").value,
       date: document.querySelector("#note-date").value,
-      criminalId: parseInt(document.querySelector(".updated-note-criminal").id),
+      criminalId: parseInt(document.querySelector(".noteEditForm").id),
     };
     saveUpdatedNote(updatedNote);
   }
@@ -34,16 +34,19 @@ eventHub.addEventListener("editNoteButtonClicked", (editNoteEvent) => {
     return noteObj.id === selectedNoteObjId;
   });
 
-  contentTarget.innerHTML += `<dialog id="noteEditForm">
-    <form method="dialog" class="updated-note-criminal" id="${matchingNote.criminalId}">
+  document.querySelector("#noteEditDialog").innerHTML = `
+    <form method="dialog" class="noteEditForm" id="${matchingNote.criminalId}">
     <div class="updated-note-prompt" id="">Check it out</div>
     <textarea id="updated-note-text" placeholder="">${matchingNote.inputText}</textarea>
     <button id="updateNoteButton">Save Updated Note</button>
     <div class="updatedNoteId" id="${matchingNote.id}"></div>
     </form>
-    </dialog>`;
+    `;
 
-  document.querySelector("#noteEditForm").showModal();
+  console.log(matchingNote.id);
+  console.log(document.querySelector("#noteEditDialog"));
+
+  document.querySelector("#noteEditDialog").showModal();
 });
 
 const render = (criminalArray) => {
@@ -63,6 +66,7 @@ const render = (criminalArray) => {
     <button class="noteButton" id="saveNote">Save Note</button>
     ${noteToggleButton()}
     </fieldset>
+    <dialog id="noteEditDialog"></dialog>
     `;
 };
 
