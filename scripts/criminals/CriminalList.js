@@ -17,14 +17,20 @@ let criminals = [];
 const filterSelections = {
   conviction: "0",
   officer: "0",
+  ageRangeMin: "",
+  ageRangeMax: "",
 };
 
 eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
-  const [ageRangeMin, ageRangeMax] = ageRangeEvent.detail.ageRange.split("-");
-  const ageSelectedCriminals = useCriminals().filter((criminalObj) => {
-    return criminalObj.age > ageRangeMin && criminalObj.age < ageRangeMax;
-  });
-  render(ageSelectedCriminals);
+  //assign min and max age range properties of filterSelections objects from ageRangeEvent details
+  [
+    filterSelections.ageRangeMin,
+    filterSelections.ageRangeMax,
+  ] = ageRangeEvent.detail.ageRange.split("-");
+
+  filterFunction();
+
+  render();
 });
 
 eventHub.addEventListener("crimeWasChosen", (convictionSelectEvent) => {
@@ -37,16 +43,19 @@ eventHub.addEventListener("crimeWasChosen", (convictionSelectEvent) => {
 });
 
 eventHub.addEventListener("officerChosen", (officerSelectEvent) => {
-  const idValueFromOfficerSelector = officerSelectEvent.detail.officerId;
-  const matchingOfficerObj = useOfficers().find((officerObj) => {
-    return parseInt(idValueFromOfficerSelector) === officerObj.id;
+  const officerArray = useOfficers();
+  const idValueFromOfficerSelector = parseInt(
+    officerSelectEvent.detail.officerId
+  );
+  const matchingOfficerObj = officerArray.find((officerObj) => {
+    return officerObj.id === idValueFromOfficerSelector;
   });
 
-  const convictionSelectedCriminals = useCriminals().filter((criminalObj) => {
-    return matchingOfficerObj.name === criminalObj.arrestingOfficer;
-  });
+  filterSelections.officer = matchingOfficerObj.name;
 
-  render(convictionSelectedCriminals);
+  filterFunction();
+
+  render();
 });
 
 eventHub.addEventListener("hideCriminalsPressed", () => {
@@ -58,22 +67,50 @@ eventHub.addEventListener("hideCriminalsPressed", () => {
 
 eventHub.addEventListener("showAllCriminalsPressed", () => {
   if (contentTarget.className != "allCriminalsDisplayed") {
-    render(useCriminals());
+    criminals = useCriminals();
+    render();
     contentTarget.className = "allCriminalsDisplayed";
   }
 });
 
 const filterFunction = () => {
+  //set component state array of criminals to entire array from app state
   criminals = useCriminals();
+  // invoke function to produce array of convictions and assign result to a variable
   const allConvictions = useConvictions();
 
+  //if convictions property of the filterSelections objects doesn't equal a sttring of 0...
   if (filterSelections.conviction !== "0") {
+    // search array of convictions for the conviction object whose id property matches the value of the convictions property (as an integer) of the filterSelction object
     const matchingConvictionObj = allConvictions.find((c) => {
       return parseInt(filterSelections.conviction) === c.id;
     });
 
+    //set component state criminals array to equal the result of filtering through the entire colleciton of those objects and and returning only the ones for which
+    //the value of the conviction property matches the value of the name property of the specified conviction object found above
     criminals = criminals.filter((currentCriminalObj) => {
       return matchingConvictionObj.name === currentCriminalObj.conviction;
+    });
+  }
+
+  //if the value of the officer property of the filterSelection object isn't "0"...
+  if (filterSelections.officer !== "0") {
+    //set component state criminals array to equal the result of filtering through that current collection and returning only the results
+    // whose arrestingOfficer property value is equal to the officer property value of the filterSelections object
+    criminals = criminals.filter((c) => {
+      if (c.arrestingOfficer === filterSelections.officer) {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  if (filterSelections.ageRangeMin && filterSelections.ageRangeMax) {
+    criminals = criminals.filter((criminalObj) => {
+      return (
+        criminalObj.age > filterSelections.ageRangeMin &&
+        criminalObj.age < filterSelections.ageRangeMax
+      );
     });
   }
 };
