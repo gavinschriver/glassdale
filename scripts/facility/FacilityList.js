@@ -9,6 +9,10 @@ import { Facility } from "./Facility.js";
 const contentTarget = document.querySelector("#contentList");
 const eventHub = document.querySelector(".container");
 
+let facilities = useFacilities();
+let crimFacs = useCriminalFacilities();
+let criminals = useCriminals();
+
 eventHub.addEventListener("showFacilitiesButtonClicked", () => {
   if (contentTarget.className !== "facilitiesDisplayed") {
     render();
@@ -19,15 +23,11 @@ eventHub.addEventListener("showFacilitiesButtonClicked", () => {
   }
 });
 
-let facilities = useFacilities();
-let crimFacs = useCriminalFacilities();
-let criminals = useCriminals();
-
 const render = () => {
   const facilityListHTML = facilities
     .map((facility) => {
       const matchingCrimFacs = crimFacs.filter(
-        (crimFacObj) => facility.id === crimFacObj.facilityId
+        (cf) => facility.id === cf.facilityId
       );
       const matchingCriminalObjects = matchingCrimFacs.map((cf) => {
         const matchingCriminal = criminals.find(
@@ -36,9 +36,7 @@ const render = () => {
         return matchingCriminal;
       });
 
-      const facilityHTML = Facility(facility, matchingCriminalObjects);
-      console.log(matchingCriminalObjects);
-      return facilityHTML;
+      return Facility(facility, matchingCriminalObjects);
     })
     .join(" ");
 

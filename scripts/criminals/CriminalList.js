@@ -31,6 +31,8 @@ eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
   filterFunction();
 
   render();
+
+  contentTarget.className = "filteredCriminalsDisplayed";
 });
 
 eventHub.addEventListener("crimeWasChosen", (convictionSelectEvent) => {
@@ -40,6 +42,8 @@ eventHub.addEventListener("crimeWasChosen", (convictionSelectEvent) => {
   filterFunction();
 
   render();
+
+  contentTarget.className = "filteredCriminalsDisplayed";
 });
 
 eventHub.addEventListener("officerChosen", (officerSelectEvent) => {
@@ -47,15 +51,22 @@ eventHub.addEventListener("officerChosen", (officerSelectEvent) => {
   const idValueFromOfficerSelector = parseInt(
     officerSelectEvent.detail.officerId
   );
-  const matchingOfficerObj = officerArray.find((officerObj) => {
-    return officerObj.id === idValueFromOfficerSelector;
-  });
 
-  filterSelections.officer = matchingOfficerObj.name;
+  if (idValueFromOfficerSelector === 0) {
+    filterSelections.officer = "0";
+  } else {
+    const matchingOfficerObj = officerArray.find((officerObj) => {
+      return officerObj.id === idValueFromOfficerSelector;
+    });
+
+    filterSelections.officer = matchingOfficerObj.name;
+  }
 
   filterFunction();
 
   render();
+
+  contentTarget.className = "filteredCriminalsDisplayed";
 });
 
 eventHub.addEventListener("hideCriminalsPressed", () => {
@@ -74,20 +85,12 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
 });
 
 const filterFunction = () => {
-  //set component state array of criminals to entire array from app state
   criminals = useCriminals();
-  // invoke function to produce array of convictions and assign result to a variable
   const allConvictions = useConvictions();
-
-  //if convictions property of the filterSelections objects doesn't equal a sttring of 0...
   if (filterSelections.conviction !== "0") {
-    // search array of convictions for the conviction object whose id property matches the value of the convictions property (as an integer) of the filterSelction object
     const matchingConvictionObj = allConvictions.find((c) => {
       return parseInt(filterSelections.conviction) === c.id;
     });
-
-    //set component state criminals array to equal the result of filtering through the entire colleciton of those objects and and returning only the ones for which
-    //the value of the conviction property matches the value of the name property of the specified conviction object found above
     criminals = criminals.filter((currentCriminalObj) => {
       return matchingConvictionObj.name === currentCriminalObj.conviction;
     });
