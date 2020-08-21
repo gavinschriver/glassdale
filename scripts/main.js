@@ -7,10 +7,12 @@ import { witnessButton } from "./witnesses/witnessesButton.js";
 import { witnessListControls } from "./witnesses/witnessListControls.js";
 import "./criminals/AlibiList.js";
 import "./witnesses/witnessList.js";
+import { FacilityList } from "./facility/FacilityList.js";
 
+CriminalList();
 NoteForm();
 criminalListControls();
 WitnessList();
 witnessListControls();
 witnessButton();
-CriminalList();
+FacilityList();

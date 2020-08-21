@@ -1,8 +1,8 @@
-export const Facility = (facility, matchingCriminalObjects) => {
-  `
-  <h2>${facility.facilityName}</h2>
+export const Facility = (facilityObj, matchingCriminalArray) => {
+  return `
+  <h2>${facilityObj.facilityName}</h2>
 
-  <ul>${matchingCriminalObjects.map((c) => `<li>${c.name}</li>`)}</ul>
+  <ul>${matchingCriminalArray.map((c) => `<li>${c.name}</li>`).join("")}</ul>
   
   `;
 };
