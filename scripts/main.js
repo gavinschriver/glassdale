@@ -8,6 +8,8 @@ import { witnessListControls } from "./witnesses/witnessListControls.js";
 import "./criminals/AlibiList.js";
 import "./witnesses/witnessList.js";
 import { FacilityList } from "./facility/FacilityList.js";
+import { FacilityListControls } from "./facility/FacilityListControls.js";
+import { FacilitiesButton } from "./facility/FacilityButton.js";
 
 CriminalList();
 NoteForm();
@@ -16,3 +18,5 @@ WitnessList();
 witnessListControls();
 witnessButton();
 FacilityList();
+FacilityListControls();
+FacilitiesButton();

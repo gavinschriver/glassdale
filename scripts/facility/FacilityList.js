@@ -29,7 +29,7 @@ const render = () => {
       console.log(matchingCriminalObjects);
       return facilityHTML;
     })
-    .join("");
+    .join(" ");
 
   contentTarget.innerHTML = `${facilityListHTML}`;
 };
