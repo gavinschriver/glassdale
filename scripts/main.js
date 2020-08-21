@@ -10,7 +10,7 @@ import "./witnesses/witnessList.js";
 
 NoteForm();
 criminalListControls();
-CriminalList();
 WitnessList();
 witnessListControls();
 witnessButton();
+CriminalList();
