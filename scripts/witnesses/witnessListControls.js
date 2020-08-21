@@ -1,5 +1,3 @@
-import { witnessButton } from "./witnessesButton.js";
-
 const contentTarget = document.querySelector(".witnessListControlls");
 
 export const witnessListControls = () => {

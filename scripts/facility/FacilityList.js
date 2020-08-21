@@ -6,7 +6,18 @@ import {
 } from "./CriminalFacilityProvider.js";
 import { Facility } from "./Facility.js";
 
-const contentTarget = document.querySelector(".facilityContainer");
+const contentTarget = document.querySelector("#contentList");
+const eventHub = document.querySelector(".container");
+
+eventHub.addEventListener("showFacilitiesButtonClicked", () => {
+  if (contentTarget.className !== "facilitiesDisplayed") {
+    render();
+    contentTarget.className = "facilitiesDisplayed";
+  } else if (contentTarget.className === "facilitiesDisplayed") {
+    contentTarget.innerHTML = "";
+    contentTarget.classList.remove("facilitiesDisplayed");
+  }
+});
 
 let facilities = useFacilities();
 let crimFacs = useCriminalFacilities();
@@ -42,7 +53,5 @@ export const FacilityList = () => {
       facilities = useFacilities();
       crimFacs = useCriminalFacilities();
       criminals = useCriminals();
-
-      render();
     });
 };
