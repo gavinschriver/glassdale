@@ -13,6 +13,11 @@ const contentTarget = document.querySelector("#contentList");
 
 let facilities = [];
 let crimFac = [];
+let criminals = [];
+const filterSelections = {
+  conviction: "0",
+  officer: "0",
+};
 
 eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
   const [ageRangeMin, ageRangeMax] = ageRangeEvent.detail.ageRange.split("-");
@@ -23,23 +28,12 @@ eventHub.addEventListener("ageRangeSelected", (ageRangeEvent) => {
 });
 
 eventHub.addEventListener("crimeWasChosen", (convictionSelectEvent) => {
-  const idValueFromConvictionSelector =
+  filterSelections.conviction =
     convictionSelectEvent.detail.IDofTheCrimeThatWasChosen;
 
-  const matchingConvictionObj = useConvictions().find(
-    (currentConvictionObj) => {
-      return (
-        parseInt(idValueFromConvictionSelector) === currentConvictionObj.id
-      );
-    }
-  );
+  filterFunction();
 
-  const convictionSelectedCriminals = useCriminals().filter(
-    (currentCriminalObj) =>
-      matchingConvictionObj.name === currentCriminalObj.conviction
-  );
-
-  render(convictionSelectedCriminals);
+  render();
 });
 
 eventHub.addEventListener("officerChosen", (officerSelectEvent) => {
@@ -69,8 +63,23 @@ eventHub.addEventListener("showAllCriminalsPressed", () => {
   }
 });
 
-const render = (currentCriminalArray) => {
-  const fullCriminalHTML = currentCriminalArray
+const filterFunction = () => {
+  criminals = useCriminals();
+  const allConvictions = useConvictions();
+
+  if (filterSelections.conviction !== "0") {
+    const matchingConvictionObj = allConvictions.find((c) => {
+      return parseInt(filterSelections.conviction) === c.id;
+    });
+
+    criminals = criminals.filter((currentCriminalObj) => {
+      return matchingConvictionObj.name === currentCriminalObj.conviction;
+    });
+  }
+};
+
+const render = () => {
+  const fullCriminalHTML = criminals
     .map((criminalToBeRepresented) => {
       const facilityRelationshipsForCriminal = crimFac.filter(
         (cr) => criminalToBeRepresented.id === cr.criminalId
@@ -97,9 +106,10 @@ export const CriminalList = () => {
     .then(getFacilities)
     .then(getCriminalFacilities)
     .then(() => {
+      criminals = useCriminals();
       facilities = useFacilities();
       crimFac = useCriminalFacilities();
 
-      render(useCriminals()); // first time render is invoked, its with the (currentCriminalArray) value of the entire criminals entity, as produced by invoking useCriminals, which should always be equal to that full entity as long as we only 'get criminals' once...
+      render(); // first time render is invoked, its with the (currentCriminalArray) value of the entire criminals entity, as produced by invoking useCriminals, which should always be equal to that full entity as long as we only 'get criminals' once...
     });
 };
